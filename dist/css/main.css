@@ -60,6 +60,7 @@
 @media (min-width: 768px) {
   #menusWrapper {
     flex-direction: row;
+    align-items: flex-start;
   }
 }
 
@@ -75,6 +76,11 @@
   cursor: pointer;
   padding-left: 1rem;
   min-width: 310px;
+}
+@media (min-width: 768px) {
+  .dropDown__input {
+    min-width: unset;
+  }
 }
 .dropDown__input__ingredients {
   background-color: #3282f7;
@@ -166,11 +172,6 @@
   top: 30px;
   cursor: pointer;
   height: 20px;
-}
-@media (min-width: 768px) {
-  .dropDown__chevronDown {
-    top: -40px;
-  }
 }
 
 #recipes-wrapper {

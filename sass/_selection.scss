@@ -6,6 +6,7 @@
   align-items: center;
   @media (min-width: 768px) {
     flex-direction: row;
+    align-items: flex-start;
   }
 }
 
@@ -20,6 +21,9 @@
     cursor: pointer;
     padding-left: 1rem;
     min-width: 310px;
+    @media (min-width: 768px) {
+      min-width: unset;
+    }
     &__ingredients {
       background-color: $color--ingredients;
       border-color: $color--ingredients;
@@ -111,9 +115,6 @@
     top: 30px;
     cursor: pointer;
     height: 20px;
-    @media (min-width: 768px) {
-      top: -40px;
-    }
   }
 }
 
