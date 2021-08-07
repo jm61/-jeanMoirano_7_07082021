@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='icon' href='public/img/favicon-toque-de-chef.png'>
+    <script src="src/js/fa.js"></script>
+    <link rel="stylesheet" href="dist/css/main.min.css">
+    <title>Les Petits Plats</title>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" aria-label="home page">
+            <img id="logo" src="public/img/logo.png" alt="Logo Les Petits Plats" aria-hidden="true">
+        </a>
+    </header>
+
+    <nav class="nav">
+        <label for="search"></label>
+            <input
+            title="3 caractères minimum"
+            id="search" 
+            class="nav__search" 
+            type="text" 
+            tabindex=0
+            minlength=3
+            autocomplete="off"
+            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+            <i class="nav__search__icon fas fa-search fa-lg"></i>
+    </nav>
+    <div class="search-error-msg"></div>
+
+    <!-- hidden span for selecting item -->
+    <div class="nav__selected__container"></div>
+
+    <div id="menusWrapper">
+
+        <div class="dropDown dropDown__ingredients">
+            <div id="container-ingredients-closed" class="dropDown_closed">
+                <label for="ingredients-input"></label>
+                <input
+                type="text" 
+                id="ingredients-input" 
+                class="dropDown__input dropDown__input__ingredients"
+                placeholder="Ingrédients">
+                <i id="chevron-down-ingredients" class="dropDown__chevronDown fas fa-chevron-down" ></i>
+            </div>
+
+            <div id="container-ingredients-open" class="dropDown__input__open dropDown__input__open__ingredients">
+
+                <input 
+                type="search" class="dropDown__input__open__title" placeholder="Rechercher un ingrédient">
+                <i id="chevron-up-ingredients" class="dropDown__input__open__chevron fas fa-chevron-up"></i>
+                <ul class="dropDown__input__open__list dropDown__input__active__list__ingredient">
+                    <!-- ingredients <li> from data -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="dropDown dropDown__appliances">
+            <div id="container-appliances-closed" class="dropDown_closed">
+                <label for="appliances-input"></label>
+                <input 
+                type="text" 
+                id="appliances-input" 
+                class="dropDown__input dropDown__input__appliances"
+                placeholder="Appareils">
+                <i id="chevron-down-appliances" class="dropDown__chevronDown fas fa-chevron-down"></i>
+            </div>
+
+            <div id="container-appliances-open" class="dropDown__input__open dropDown__input__open__appliances">
+
+                <input type="search" class="dropDown__input__open__title" placeholder="Rechercher un appareil">
+                <i id="chevron-up-appliances" class="dropDown__input__open__chevron fas fa-chevron-up"></i>
+                <ul class="dropDown__input__open__list dropDown__input__active__list__appliance">
+                    <!-- Appliances <li> from data -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="dropDown dropDown__utensils">
+            <div id="container-utensils-closed" class="dropDown_closed">
+                <label for="utensils-input"></label>
+                <input 
+                type="text" 
+                id="utensils-input" 
+                class="dropDown__input dropDown__input__utensils"
+                placeholder="Ustensiles">
+                <i id="chevron-down-utensils" class="dropDown__chevronDown fas fa-chevron-down"></i>
+            </div>
+
+            <div id="container-utensils-open" class="dropDown__input__open dropDown__input__open__utensils">
+
+                <input type="search" class="dropDown__input__open__title" placeholder="Rechercher un ustensile">
+                <i id="chevron-up-utensils" class="dropDown__input__open__chevron fas fa-chevron-up"></i>
+                <ul class="dropDown__input__open__list dropDown__input__active__list__utensils">
+                <!-- Utensils <li> from data -->
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <main id="recipes-wrapper"></main>
+    <script src="src/js/main.js" type="module"></script>
+</body>
+</html>

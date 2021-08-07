@@ -1,0 +1,50 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1em;
+      &__search {
+      width: 100%;
+      background-color: $color--search;    
+      border: none;
+      border-radius: 5px;
+      padding: 22px;
+      font-size: 1rem;
+      padding-right: 60px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      &::placeholder {
+        opacity: 40%;
+        font-size: 1rem;
+        color: #000;
+      }
+      &__icon {
+        position: relative;
+        right: 35px;
+        cursor: pointer;
+      }
+    }
+    &__selected__container {
+      gap: 10px;
+      padding: .3rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      margin: auto;
+      &__tagSelected {
+      margin: 0;
+      padding: 0 .3em;
+      width: auto;
+      height: 37px;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      justify-content: space-around;
+      align-items: center;
+      cursor: pointer;
+      }
+      &__close {
+        margin-left: .4rem;
+      }
+    }
+  }

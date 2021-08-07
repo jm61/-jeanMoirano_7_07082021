@@ -1,0 +1,12 @@
+@mixin red {
+    border: 2px dashed crimson;
+}
+@mixin green {
+    border: 2px dotted green;
+}
+@mixin orange {
+    border: 2px dashed orange;
+}
+@mixin blue {
+    border: 2px dashed blue;
+}
