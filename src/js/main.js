@@ -5,7 +5,9 @@ import {search} from './mainSearch.js'
 
 new dropDownMenus(recipes)
 new DisplayRecipes(recipes)
+// main loop search
 search()
+
 
 
 

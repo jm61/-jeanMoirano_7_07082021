@@ -5,52 +5,34 @@ import * as _ from "./utils.js"
 const mainSearch = _.$("#search")
 const hiddenCont = _.$(".search-error-msg")
 const recipesWrapper = _.$("#recipes-wrapper")
+export let searchResult = []
 
-function search() {
+export function search() {
   mainSearch.value = ""
-  mainSearch.addEventListener("input", (e) => {
-    let searchResult = []
+  mainSearch.addEventListener("input", event => {
+    searchResult = []
     recipesWrapper.innerHTML = ""
     hiddenCont.textContent = ""
 
-    if (e.target.value.length < 3) {
+    if (event.target.value.length < 3) {
       new DisplayRecipes(recipes)
     }
+    // init counter
     const rand = Math.random().toFixed(4)
     console.time(rand)
-    recipes.forEach((recipe) => {
-      // search on list of ingredients
-      getIngredients(recipe).forEach((el) => {
-        if (_.flatText(el).includes(e.target.value)) {
-          searchResult.push(recipe)
-        }
-      })
-      // search on list of ustensils
-      getUstensils(recipe).forEach((el) => {
-        if (_.flatText(el).includes(e.target.value)) {
-          searchResult.push(recipe)
-        }
-      })
-      // search on name, description and appliance
-      if (
-        _.flatText(recipe.name).includes(e.target.value) ||
-        _.flatText(recipe.description).includes(e.target.value) ||
-        _.flatText(recipe.appliance).includes(e.target.value)
-      ) {
-        searchResult.push(recipe)
-      }
-    })
+    // search function
+    searchAlgo1(recipes,event)
+    // format results
     searchResult = new Set(searchResult)
     searchResult = Array.from(searchResult)
-    new DisplayRecipes(searchResult)
-    new dropDownMenus(searchResult)
+    // refresh recipes list and dropDown menus
+    refreshDOM(searchResult)
     console.timeEnd(rand)
     if (recipesWrapper.innerHTML.length === 0) {
-      invalidSearch(e.target.value)
+      invalidSearch(event.target.value)
     }
   })
 }
-
 const invalidSearch = (value) => {
   hiddenCont.textContent = `votre recherche avec "${value}" ne donne aucun résultat`
 }
@@ -97,4 +79,33 @@ function getIngredients(recipe) {
   return listIngredients
 }
 
-export { search }
+function searchAlgo1(recipes,event) {
+  recipes.forEach((recipe) => {
+    // search on list of ingredients
+    getIngredients(recipe).forEach((el) => {
+      if (_.flatText(el).includes(event.target.value)) {
+        searchResult.push(recipe)
+      }
+    })
+    // search on list of ustensils
+    getUstensils(recipe).forEach((el) => {
+      if (_.flatText(el).includes(event.target.value)) {
+        searchResult.push(recipe)
+      }
+    })
+    // search on name, description and appliance
+    if (
+      _.flatText(recipe.name).includes(event.target.value) ||
+      _.flatText(recipe.description).includes(event.target.value) ||
+      _.flatText(recipe.appliance).includes(event.target.value)
+    ) {
+      searchResult.push(recipe)
+    }
+  })
+}
+
+function refreshDOM(searchResult) {
+  new DisplayRecipes(searchResult)
+  new dropDownMenus(searchResult)
+}
+
