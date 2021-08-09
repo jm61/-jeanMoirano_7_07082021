@@ -23,6 +23,7 @@
     min-width: 310px;
     @media (min-width: 768px) {
       min-width: unset;
+      width: 25ch;
     }
     &__ingredients {
       background-color: $color--ingredients;

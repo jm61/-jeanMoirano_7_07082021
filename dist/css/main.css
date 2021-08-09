@@ -80,6 +80,7 @@
 @media (min-width: 768px) {
   .dropDown__input {
     min-width: unset;
+    width: 25ch;
   }
 }
 .dropDown__input__ingredients {
