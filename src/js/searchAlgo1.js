@@ -2,7 +2,7 @@ import * as _ from "./utils.js"
 import {searchResult} from './mainSearch.js'
 
 export function searchAlgo1(recipes,event) {
-    recipes.forEach((recipe) => {
+    recipes.forEach(recipe => {
       // search on list of ingredients
       getIngredients(recipe).forEach((el) => {
         if (_.flatText(el).includes(event.target.value)) {

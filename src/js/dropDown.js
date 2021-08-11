@@ -1,6 +1,7 @@
-import { recipes } from "./data.js";
 import * as _ from "./utils.js";
+import {tagsSearch,resetRecipes} from './tagsSearch.js'
 let recipesName = [];
+export let tagSelected = []
 const c = console.log;
 // tags menus variables
 const selectedElement = _.$(".nav__selected__container");
@@ -35,7 +36,7 @@ export class dropDownMenus {
   menus(a, b, c) {
     _.$(`#container-${a}-closed`).addEventListener(
       "click",
-      (e) => {
+      e => {
         openMenu(a);
         _.$(`#container-${a}-open`).firstChild.nextSibling.focus();
         closeMenu(b);
@@ -43,7 +44,7 @@ export class dropDownMenus {
       },
       true
     );
-    _.$(`#chevron-up-${a}`).addEventListener("click", (e) => {
+    _.$(`#chevron-up-${a}`).addEventListener("click", e => {
       closeMenu(a);
     });
   }
@@ -107,11 +108,13 @@ export class dropDownMenus {
       elementLi.textContent = el;
       elementLi.addEventListener(
         "click",
-        (e) => {
+        e => {
+          tagsSearch(el,menuColor)
           const button = _.createEltWithClassName(
             "button",
             "nav__selected__container__tagSelected"
           );
+          tagSelected.push(el)
           button.textContent = el;
           const closeIcon = _.createEltWithClassName(
             "i",
@@ -124,6 +127,8 @@ export class dropDownMenus {
           closeMenu("ingredients");
           selectedElement.appendChild(button);
           button.addEventListener("click", (e) => {
+            tagSelected = tagSelected.filter(el => el != e.target.textContent)
+            resetRecipes(recipes)
             selectedElement.removeChild(button);
             removeEventListener("click", e);
           });
