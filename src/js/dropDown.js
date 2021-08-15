@@ -109,12 +109,13 @@ export class dropDownMenus {
       elementLi.addEventListener(
         "click",
         e => {
+          tagSelected.push(el)
           tagsSearch(el,menuColor)
           const button = _.createEltWithClassName(
             "button",
             "nav__selected__container__tagSelected"
           );
-          tagSelected.push(el)
+          //tagSelected.push(el)
           button.textContent = el;
           const closeIcon = _.createEltWithClassName(
             "i",
@@ -135,7 +136,7 @@ export class dropDownMenus {
         },
         true
       );
-      return elementLi;
+      return elementLi
     }
   }
 }

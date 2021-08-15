@@ -1,25 +1,33 @@
 import {recipes} from './data.js'
+//list of selected tags
 import {tagSelected} from './dropDown.js'
+//initial data optimized
+import {dataFormat} from './formatData.js'
+// Js utilities
 import * as _ from "./utils.js"
 import {DisplayRecipes} from './recipes.js'
 import {dropDownMenus} from './dropDown.js'
+// Selection of dropdown menus
 const ingredientsColor = "#3282f7";
 const appliancesColor = "#68d9a4";
 const utensilsColor = "#ed6454";
+// UL list dropdown menus
 const ingredientsUl = _.$(".dropDown__input__active__list__ingredient");
 const applianceUl = _.$(".dropDown__input__active__list__appliance");
 const utensilsUl = _.$(".dropDown__input__active__list__utensils")
 const recipesWrapper = _.$('#recipes-wrapper')
 const c = console.log
+// tag selection search output array
 let tagSelectResult = []
 
+// function attached to <li> event
 export const tagsSearch = (tag,menu) => {
     recipesWrapper.innerHTML = ''
+    // selection dropdown menus
     switch(menu) {
         case ingredientsColor:
             menu = ingredientsUl
             recipes.forEach(recipe => {
-                // search on list of ingredients
                 getIngredients(recipe).forEach((el) => {
                   if (el.includes(tag)) {
                     tagSelectResult.push(recipe)
@@ -93,13 +101,35 @@ export const tagsSearch = (tag,menu) => {
     })
     return listIngredients
   }
+  // Preparation of search results
   function displayResults(tagSelectResult) {
-      //console.log({tagSelected})
+      let countTags = tagSelected.length
       tagSelectResult = new Set(tagSelectResult)
       tagSelectResult = Array.from(tagSelectResult)
-      //console.log({tagSelectResult})
-      new DisplayRecipes(tagSelectResult)
-      new dropDownMenus(tagSelectResult)
+      if(tagSelected.length > 1) {
+        // temp result array
+        let tempResult = []
+        c('process multi tags')
+        // logical AND of tagSelected
+        dataFormat.forEach(recipe => {
+          let match = 0
+          tagSelected.forEach(tag => {
+             recipe.tagMerge.forEach(el => {
+                 if(el === tag) {
+                     match++
+                     if(match === countTags){
+                      tempResult.push(recipe.raw)
+                      }
+                  }
+              })
+          })
+      })
+      new DisplayRecipes(tempResult)
+      new dropDownMenus(tempResult)                   
+      } else {
+        new DisplayRecipes(tagSelectResult)
+        new dropDownMenus(tagSelectResult)
+      }  
   }
   export function resetRecipes(recipes) {
     if(tagSelected.length === 0) {
@@ -107,7 +137,6 @@ export const tagsSearch = (tag,menu) => {
         tagSelectResult = []
         new DisplayRecipes(recipes)
         new dropDownMenus(recipes)
-
     }
   }
   const removeSelectedTagFromMenu = (tag,menu) => {
