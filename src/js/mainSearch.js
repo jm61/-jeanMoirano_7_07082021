@@ -1,7 +1,9 @@
 import { recipes } from "./data.js"
+import {dataFormat} from './formatData2.js'
 import { DisplayRecipes } from "./recipes.js"
 import { dropDownMenus } from "./dropDown.js"
-import {searchAlgo1} from './searchAlgo1.js'
+//import {searchAlgo1} from './searchAlgo1.js'
+import {searchAlgo2} from './searchAlgo2.js'
 import {tagSelected} from './dropDown.js'
 import * as _ from "./utils.js"
 const mainSearch = _.$("#search")
@@ -25,13 +27,14 @@ export function search() {
     const rand = Math.random().toFixed(4)
     console.time(rand)
     // search function
-    searchAlgo1(recipes,event)
+    //searchAlgo1(recipes,event)
+    searchAlgo2(dataFormat,event)
     // format results
     searchResult = new Set(searchResult)
     searchResult = Array.from(searchResult)
     tagSelectResult = new Set(tagSelectResult)
     tagSelectResult = Array.from(tagSelectResult)
-    console.log({tagSelectResult})
+    //console.log({tagSelectResult})
     // refresh recipes list and dropDown menus
     refreshDOM(searchResult)
     console.timeEnd(rand)

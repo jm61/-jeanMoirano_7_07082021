@@ -2,7 +2,7 @@ import {recipes} from './data.js'
 //list of selected tags
 import {tagSelected} from './dropDown.js'
 //initial data optimized
-import {dataFormat} from './formatData.js'
+import {dataFormat} from './formatData2.js'
 // Js utilities
 import * as _ from "./utils.js"
 import {DisplayRecipes} from './recipes.js'
@@ -114,8 +114,8 @@ export const tagsSearch = (tag,menu) => {
         dataFormat.forEach(recipe => {
           let match = 0
           tagSelected.forEach(tag => {
-             recipe.tagMerge.forEach(el => {
-                 if(el === tag) {
+             recipe.searchMerge.forEach(el => {
+               if(el === _.flatText(tag)) {
                      match++
                      if(match === countTags){
                       tempResult.push(recipe.raw)
