@@ -29,6 +29,7 @@ export function search() {
     // search function
     //searchAlgo1(recipes,event)
     searchAlgo2(dataFormat,event)
+    console.timeEnd(rand)
     // format results
     searchResult = new Set(searchResult)
     searchResult = Array.from(searchResult)
@@ -37,7 +38,6 @@ export function search() {
     //console.log({tagSelectResult})
     // refresh recipes list and dropDown menus
     refreshDOM(searchResult)
-    console.timeEnd(rand)
     if (recipesWrapper.innerHTML.length === 0) {
       invalidSearch(event.target.value)
     }
