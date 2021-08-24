@@ -2,7 +2,7 @@ import { recipes } from "./data.js"
 import {dataFormat} from './formatData2.js'
 import { DisplayRecipes } from "./recipes.js"
 import { dropDownMenus } from "./dropDown.js"
-//import {searchAlgo1} from './searchAlgo1.js'
+import {searchAlgo1} from './searchAlgo1.js'
 import {searchAlgo2} from './searchAlgo2.js'
 import {tagSelected} from './dropDown.js'
 import * as _ from "./utils.js"
