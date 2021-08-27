@@ -24,14 +24,14 @@ export function search() {
       new DisplayRecipes(recipes)
     }
     // init counter
-    //console.time('running time')
-    const t0 = performance.now()
+    console.time('running time')
+    //const t0 = performance.now()
     // search function
     //searchAlgo1(recipes,event)
     searchAlgo2(dataFormat,event)
-    const t1 = performance.now()
-    console.log(`Running time: ${t1-t0}ms`)
-    //console.timeEnd('running time')
+    //const t1 = performance.now()
+    //console.log(`Running time: ${t1-t0}ms`)
+    console.timeEnd('running time')
     // format results
     //searchResult = new Set(searchResult)
     searchResult = [... new Set(searchResult)]
