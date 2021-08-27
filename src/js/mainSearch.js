@@ -24,15 +24,18 @@ export function search() {
       new DisplayRecipes(recipes)
     }
     // init counter
-    const rand = Math.random().toFixed(4)
-    console.time(rand)
+    //console.time('running time')
+    const t0 = performance.now()
     // search function
     //searchAlgo1(recipes,event)
     searchAlgo2(dataFormat,event)
-    console.timeEnd(rand)
+    const t1 = performance.now()
+    console.log(`Running time: ${t1-t0}ms`)
+    //console.timeEnd('running time')
     // format results
-    searchResult = new Set(searchResult)
-    searchResult = Array.from(searchResult)
+    //searchResult = new Set(searchResult)
+    searchResult = [... new Set(searchResult)]
+    //searchResult = Array.from(searchResult)
     tagSelectResult = new Set(tagSelectResult)
     tagSelectResult = Array.from(tagSelectResult)
     //console.log({tagSelectResult})
