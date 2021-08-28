@@ -14,7 +14,7 @@ export let tagSelectResult = []
 
 export function search() {
   mainSearch.value = ""
-  mainSearch.addEventListener("input", event => {
+  mainSearch.addEventListener("change", event => {
     searchResult = []
     tagSelectResult = []
     recipesWrapper.innerHTML = ""
@@ -36,8 +36,8 @@ export function search() {
     //searchResult = new Set(searchResult)
     searchResult = [... new Set(searchResult)]
     //searchResult = Array.from(searchResult)
-    tagSelectResult = new Set(tagSelectResult)
-    tagSelectResult = Array.from(tagSelectResult)
+    //tagSelectResult = new Set(tagSelectResult)
+    tagSelectResult = [... new Set(tagSelectResult)]
     //console.log({tagSelectResult})
     // refresh recipes list and dropDown menus
     refreshDOM(searchResult)
@@ -48,6 +48,7 @@ export function search() {
 }
 const invalidSearch = (value) => {
   hiddenCont.textContent = `votre recherche avec "${value}" ne donne aucun résultat`
+  new DisplayRecipes(recipes)
 }
 function refreshDOM(source) {
   new DisplayRecipes(source)
